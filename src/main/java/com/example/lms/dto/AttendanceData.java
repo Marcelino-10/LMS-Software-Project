@@ -1,4 +1,4 @@
-package com.example.lms.controller;
+package com.example.lms.dto;
 import lombok.Data;
 
 @Data

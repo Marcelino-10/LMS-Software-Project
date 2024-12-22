@@ -1,5 +1,6 @@
 package com.example.lms.model.course_related;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -14,7 +15,9 @@ public class FileEntity {
     private String type;
 
     private String path;
+
     @ManyToOne
     @JoinColumn(name = "course_id")
+    @JsonIgnore
     private Course course;
 }

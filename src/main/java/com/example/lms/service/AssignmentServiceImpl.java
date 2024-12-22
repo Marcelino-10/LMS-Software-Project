@@ -5,6 +5,7 @@ import com.example.lms.model.course_related.assignment_related.Assignment;
 import com.example.lms.model.course_related.Course;
 import com.example.lms.model.course_related.assignment_related.AssignmentSubmission;
 import com.example.lms.dto.SubmissionResponse;
+import com.example.lms.model.user_related.Instructor;
 import com.example.lms.model.user_related.Student;
 import com.example.lms.repository.AssignmentRepo;
 import com.example.lms.repository.AssignmentSubmissionRepo;
@@ -28,6 +29,8 @@ public class AssignmentServiceImpl implements AssignmentService{
     private final StudentService studentService;
 
     private final AssignmentSubmissionRepo assignmentSubmissionRepo;
+
+    private final NotificationService notificationService;
 
     @Override
     public Assignment addAssignment(int courseId, Assignment assignment) {
@@ -101,6 +104,11 @@ public class AssignmentServiceImpl implements AssignmentService{
         as.setGrade(grade);
 
         assignmentSubmissionRepo.save(as);
+
+        Student student = as.getStudent();
+
+        notificationService.sendNotification(student, "You have scored " +  grade + " in the Assignment: " + as.getAssignment().getTitle());
+
 
         return new SubmissionResponse(as);
     }

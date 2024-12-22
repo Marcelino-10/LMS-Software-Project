@@ -1,6 +1,6 @@
 package com.example.lms.service;
 
-import com.example.lms.model.notifications.Notification;
+import com.example.lms.model.Notification;
 import com.example.lms.model.user_related.User;
 import com.example.lms.repository.NotificationRepo;
 import lombok.RequiredArgsConstructor;
@@ -30,7 +30,7 @@ public class NotificationServiceImpl implements NotificationService {
 
     public void markAsRead(int notificationId) {
         Notification notification = notificationRepo.findById(notificationId).orElseThrow(() -> new RuntimeException("Notification not found"));
-        notification.setIsRead(true);
+        notification.setRead(true);
         notificationRepo.save(notification);
     }
 
@@ -39,7 +39,7 @@ public class NotificationServiceImpl implements NotificationService {
         Notification notification = new Notification();
         notification.setMessage(message);
         notification.setTimestamp(LocalDateTime.now());
-        notification.setIsRead(false);
+        notification.setRead(false);
         notification.setUser(user);
         notificationRepo.save(notification);
     }

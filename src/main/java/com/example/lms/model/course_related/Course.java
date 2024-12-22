@@ -37,6 +37,7 @@ public class Course {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "instructor_id")
+    @JsonIgnore
     private Instructor instructor;
 
     public Course(CourseData courseData, Instructor instructor) {
@@ -46,25 +47,18 @@ public class Course {
         this.instructor = instructor;
     }
 
-//    @OneToMany(mappedBy = "Course", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<Student> enrolledStudent = new ArrayList<>();
-//
     @OneToMany(mappedBy = "course")
     @JsonManagedReference
     private List<Assignment> assignments = new ArrayList<>();
-  
+
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Question> questionBank = new ArrayList<>();
 
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Quiz> quizzes = new ArrayList<>();
 
-
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<FileEntity> files;
-
-    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Lesson> lessons = new ArrayList<>();
 
     @ManyToMany
     @JoinTable(
@@ -83,5 +77,8 @@ public class Course {
         }
         return lessonIds;
     }
+
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Lesson> lessons = new ArrayList<>();
 }
 

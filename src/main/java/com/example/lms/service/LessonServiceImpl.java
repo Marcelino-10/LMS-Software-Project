@@ -1,9 +1,10 @@
 package com.example.lms.service;
-import com.example.lms.model.course_related.Lesson;
+
 import com.example.lms.model.course_related.Course;
+import com.example.lms.model.course_related.Lesson;
 import com.example.lms.model.user_related.Student;
-import com.example.lms.repository.LessonRepo;
 import com.example.lms.repository.CourseRepo;
+import com.example.lms.repository.LessonRepo;
 import com.example.lms.repository.StudentRepo;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -11,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class LessonServiceImpl implements LessonService {
@@ -19,6 +21,7 @@ public class LessonServiceImpl implements LessonService {
     private final LessonRepo lessonRepo;
     private final CourseRepo courseRepo;
     private final StudentRepo studentRepo;
+    private final NotificationService notificationService;
 
     public Lesson addLesson(Lesson lesson, int courseId) {
         Course course = courseRepo.findById(courseId).orElse(null);
@@ -33,6 +36,10 @@ public class LessonServiceImpl implements LessonService {
 
         course.getLessons().add(lesson);
         courseRepo.save(course);
+
+        for (Student student : course.getStudents()) {
+            notificationService.sendNotification(student, "A new lesson has been uploaded to Course: " + course.getTitle());
+        }
 
         return lesson;
     }

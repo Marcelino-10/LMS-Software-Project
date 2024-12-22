@@ -1,12 +1,9 @@
 package com.example.lms.controller;
 
-import com.example.lms.model.notifications.Notification;
+import com.example.lms.model.Notification;
 import com.example.lms.model.user_related.User;
-import com.example.lms.repository.NotificationRepo;
-import com.example.lms.service.NotificationServiceImpl;
+import com.example.lms.service.NotificationService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.PathMatcher;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,8 +13,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class NotificationController {
 
-    @Autowired
-    private final NotificationServiceImpl notificationService;
+    private final NotificationService notificationService;
 
 
     @GetMapping("/{userId}")

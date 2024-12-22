@@ -2,6 +2,8 @@ package com.example.lms.model.course_related.assignment_related;
 
 import com.example.lms.model.course_related.FileEntity;
 import com.example.lms.model.user_related.Student;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -13,6 +15,7 @@ public class AssignmentSubmission {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "student_id")
     private Student student;

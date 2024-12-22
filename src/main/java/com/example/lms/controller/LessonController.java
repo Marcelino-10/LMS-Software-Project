@@ -1,11 +1,13 @@
 package com.example.lms.controller;
+
+import com.example.lms.dto.AttendanceData;
 import com.example.lms.model.course_related.Lesson;
-import com.example.lms.model.course_related.Course;
-import com.example.lms.model.user_related.Student;
 import com.example.lms.service.LessonService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
+
 @RequestMapping("/lesson")
 @RestController
 @RequiredArgsConstructor

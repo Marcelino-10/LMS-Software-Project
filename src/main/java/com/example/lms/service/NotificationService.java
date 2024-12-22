@@ -1,6 +1,6 @@
 package com.example.lms.service;
 
-import com.example.lms.model.notifications.Notification;
+import com.example.lms.model.Notification;
 import com.example.lms.model.user_related.User;
 
 import java.util.List;

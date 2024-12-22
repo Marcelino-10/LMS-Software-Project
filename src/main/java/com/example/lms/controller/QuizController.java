@@ -22,7 +22,7 @@ public class QuizController {
 
     @PostMapping("/quiz/{id}/submit")
     public QuizSubmissionData submitQuiz(@PathVariable("id") int id, @RequestBody List<String> answers) {
-        return quizService.submitQuiz(152, id, answers);
+        return quizService.submitQuiz(202, id, answers);
     }
 
     @GetMapping("/quiz/{id}/submissions")

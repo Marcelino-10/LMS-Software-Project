@@ -22,7 +22,7 @@ public class AssignmentController {
 
     @PostMapping("/assignment/{id}/submit")
     public SubmissionResponse submitAssignment(@PathVariable("id") int assignmentId, @RequestParam("file")MultipartFile file) throws IOException {
-        return assignmentService.submitAssignment(302, assignmentId, file);
+        return assignmentService.submitAssignment(202, assignmentId, file);
     }
 
     @GetMapping("/assignment/{id}/submissions")

@@ -15,5 +15,4 @@ public class CourseData {
 
     private Integer instructorId;
 
-    private Integer questionBankId;
 }

@@ -1,8 +1,6 @@
-package com.example.lms.model.notifications;
+package com.example.lms.model;
 
-import com.example.lms.model.course_related.Lesson;
 import com.example.lms.model.user_related.User;
-import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -21,6 +19,7 @@ public class Notification {
     private int id;
 
     private String message;
+
     @JsonIgnore
     private boolean isRead = false;
     private LocalDateTime Timestamp;
@@ -44,39 +43,6 @@ public class Notification {
         return isRead;
     }
 
-    public void setIsRead(boolean isRead) {
-        this.isRead = isRead;
-    }
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public LocalDateTime getTimestamp() {
-        return Timestamp;
-    }
-
-    public void setTimestamp(LocalDateTime setTimestamp) {
-        this.Timestamp = setTimestamp;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 }
